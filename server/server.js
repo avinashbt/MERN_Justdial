@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 const connectDB = require('./config/db');
 
@@ -16,8 +17,12 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/businesses', require('./routes/businessRoutes'));
 app.use('/api/categories', require('./routes/categoryRoutes'));
 
-app.get('/', (req, res) => {
-  res.json({ message: 'MERN Justdial API is running' });
+// Serve static frontend files
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Serve React app for any non-API route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
 // Error handler
