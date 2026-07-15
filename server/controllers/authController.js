@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+  const secret = process.env.JWT_SECRET || 'mern_justdial_fallback_secret_key_2024';
+  return jwt.sign({ id }, secret, { expiresIn: '30d' });
 };
 
 // @desc    Register a new user
