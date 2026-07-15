@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "cd ../client && npm install && npm run build"
+    "build": "cd ../client && npm install && npm run build",
+    "seed": "node seed.js",
+    "seed:businesses": "node seedBusinesses.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
